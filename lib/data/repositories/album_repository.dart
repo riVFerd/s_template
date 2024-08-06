@@ -2,10 +2,10 @@ import 'package:fpdart/fpdart.dart';
 import 'package:s_template/common/errors/app_error.dart';
 import 'package:s_template/data/datasources/remote_datasources/album_remote_datasource.dart';
 import 'package:s_template/data/models/album/album_model.dart';
-import 'package:s_template/data/repositories/base_repository.dart';
+import 'package:s_template/data/repositories/repository.dart';
 import 'package:s_template/injection.dart';
 
-class AlbumRepository extends BaseRepository {
+class AlbumRepository extends Repository {
   AlbumRepository(super.networkInfo);
 
   final albumRemote = locator<AlbumRemoteDatasource>();

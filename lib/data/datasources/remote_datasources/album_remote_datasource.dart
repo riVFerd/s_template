@@ -1,8 +1,8 @@
-import 'package:s_template/data/datasources/remote_datasources/base_remote_datasource.dart';
+import 'package:s_template/data/datasources/remote_datasources/remote_datasource.dart';
 
 import '../../models/album/album_model.dart';
 
-class AlbumRemoteDatasource extends BaseRemoteDatasource {
+class AlbumRemoteDatasource extends RemoteDatasource {
   AlbumRemoteDatasource(super.dio, super.session);
   
   Future<List<AlbumModel>> getAlbums() async {
