@@ -5,7 +5,7 @@ class ApiService {
   static Dio dio() {
     final dio = Dio(
       BaseOptions(
-        // baseUrl: '',
+        baseUrl: 'https://jsonplaceholder.typicode.com',
         sendTimeout: const Duration(minutes: 3),
         connectTimeout: const Duration(minutes: 3),
         receiveTimeout: const Duration(minutes: 3),

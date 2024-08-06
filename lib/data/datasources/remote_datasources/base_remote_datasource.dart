@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:s_template/common/errors/api_exception.dart';
 import 'package:s_template/common/logging/logger.dart';
@@ -28,13 +30,13 @@ class BaseRemoteDatasource {
       final response = await request(_dio);
 
       if (response.statusCode! >= 200 || response.statusCode! < 300) {
-        // Todo: handle response since it's depend on the API response
+        if (response.data == null) return onResponse({});
+        if (response.data is String) return onResponse(jsonDecode(response.data));
         return onResponse(response.data);
       } else {
         throw ApiException(response.statusMessage ?? 'Something went wrong');
       }
     } on DioException catch (e) {
-      // Todo: handle DioException
       logger.e(e);
       throw ApiException(e.message ?? 'Something went wrong');
     } catch (e) {
