@@ -5,10 +5,10 @@ import 'package:s_template/common/network/network_info.dart';
 
 
 /// Base class for all repository
-class BaseRepository {
+class Repository {
   final NetworkInfo _networkInfo;
 
-  BaseRepository(this._networkInfo);
+  Repository(this._networkInfo);
 
   /// [T] is return type either from [onSuccess] or [getOnLocal]
   /// [R] is return type from network call and param for [onSuccess] and [saveToLocal]
