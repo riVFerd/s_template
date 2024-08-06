@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
-import '../logging/logger.dart';
+import '../utils/logger.dart';
 
 class Storage {
   const Storage();

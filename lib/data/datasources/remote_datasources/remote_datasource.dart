@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:s_template/common/errors/api_exception.dart';
-import 'package:s_template/common/logging/logger.dart';
+import 'package:s_template/common/utils/logger.dart';
 import 'package:s_template/data/datasources/session/session_source.dart';
 
 
 /// Base class for all remote datasource
-class BaseRemoteDatasource {
+class RemoteDatasource {
   final Dio _dio;
   final SessionSource _session;
 
-  BaseRemoteDatasource(this._dio, this._session);
+  RemoteDatasource(this._dio, this._session);
 
   /// [T] is return type from [onResponse] network request
   /// [request] is the network request function which it's return type is param for [onResponse]
