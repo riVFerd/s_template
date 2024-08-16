@@ -13,8 +13,15 @@ extension WidgetsExtension on List<Widget> {
 
 extension WidgetExtension on Widget {
   SizedBox sized({double? w, double? h}) => SizedBox(
-        width: w,
-        height: h,
-        child: this,
-      );
+    width: w,
+    height: h,
+    child: this,
+  );
+
+  Expanded expand({int flex = 1}) => Expanded(
+    flex: flex,
+    child: this,
+  );
+
+  SafeArea safeArea() => SafeArea(child: this);
 }
