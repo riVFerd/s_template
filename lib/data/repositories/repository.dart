@@ -13,7 +13,7 @@ class Repository {
   /// [T] is return type either from [onSuccess] or [getOnLocal]
   /// [R] is return type from network call and param for [onSuccess] and [saveToLocal]
   /// throws [AppError] if something went wrong
-  Future<Either<AppError, T>> handleNetworkCall<R, T>({
+  FutureResponse<T> handleNetworkCall<R, T>({
     required Future<R> call,
     required T Function(R data) onSuccess,
     Future<void> Function(R data)? saveToLocal,

@@ -23,5 +23,17 @@ extension WidgetExtension on Widget {
     child: this,
   );
 
+  Widget showWhen(bool condition, {Widget widgetReplacement = const SizedBox.shrink()}) {
+    // return condition ? this : widgetReplacement;
+    return Visibility(
+      visible: condition,
+      replacement: widgetReplacement,
+      child: this,
+    );
+  }
+
   SafeArea safeArea() => SafeArea(child: this);
+
+  Center center() => Center(child: this);
+
 }

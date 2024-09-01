@@ -16,12 +16,12 @@ class RemoteDatasource {
   /// throws [ApiException] if something went wrong
   Future<T> networkRequest<T>({
     required Future<Response> Function(Dio dio) request,
-    required T Function(dynamic data) onResponse,
+    required T Function(dynamic res) onResponse,
     bool isAuth = false,
   }) async {
     try {
       if (isAuth) {
-        _applyAuthHeader();
+        await _applyAuthHeader();
       } else {
         _dio.options.headers.remove("Authorization");
       }
@@ -29,13 +29,28 @@ class RemoteDatasource {
 
       if (response.statusCode! >= 200 || response.statusCode! < 300) {
         // Todo: handle response since it's depend on the API response
+        // ex: some API response with status code 200 but contain error
+
+        // check if response contain error
+        if (response.data['error'] != null) {
+          throw ApiException(response.data['error']);
+        }
+
         return onResponse(response.data);
       } else {
         throw ApiException(response.statusMessage ?? 'Something went wrong');
       }
     } on DioException catch (e) {
-      // Todo: handle DioException
       logger.e(e);
+
+      // Todo: handle other DioException
+      // remove auth when status code is 401
+      if (e.response?.statusCode == 401) {
+        await _session.deleteToken();
+        _dio.options.headers.remove("Authorization");
+        throw ApiException('Unauthorized, please login again');
+      }
+
       throw ApiException(e.message ?? 'Something went wrong');
     } catch (e) {
       logger.e(e);

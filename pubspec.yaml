@@ -46,6 +46,7 @@ dependencies:
   skeletonizer: ^1.4.2
   cached_network_image: ^3.4.1
   flutter_svg: ^2.0.10+1
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
